@@ -2,5 +2,5 @@
 
 
 ## Docs API
-
-http://localhost:8080/swagger-ui/index.html
+v3/api-docs
+swagger-ui/index.html
