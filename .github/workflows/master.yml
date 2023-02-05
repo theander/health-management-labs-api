@@ -25,4 +25,4 @@ jobs:
           context: .
           file: ./Dockerfile
           push: true
-          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/health-management-labs-api:latest
+          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/health-management-labs-api:1.0.${{ github.run_number }}
