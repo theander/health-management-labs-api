@@ -29,13 +29,8 @@ public class LabService implements ILab {
     }
 
     @Override
-    public List<Lab> getLabsByUserId(Long userId) {
-        return labRepository.findLabByUserId(userId);
-    }
-
-    @Override
-    public Lab getLabsById(Long userId) {
-        Optional<Lab> labRepositoryById = labRepository.findById(userId);
+    public Lab getLabsById(Long Id) {
+        Optional<Lab> labRepositoryById = labRepository.findById(Id);
         if(labRepositoryById.isPresent()) {
             return labRepositoryById.get();
         }
@@ -43,8 +38,8 @@ public class LabService implements ILab {
     }
 
     @Override
-    public List<Lab> getLabs() {
-        return labRepository.findAll();
+    public List<Lab> getLabs(String status) {
+        return labRepository.findAllByStatusEquals(Status.valueOf(status));
     }
 
     @Override
@@ -54,5 +49,14 @@ public class LabService implements ILab {
             return null;
         }
         return lab.get();
+    }
+
+    @Override
+    public List<Lab> findLabByUsername(String username) {
+        List<Lab> lab = labRepository.findByUsernameAndStatusEquals(username,Status.CLOSE);
+        if (lab==null) {
+            return null;
+        }
+        return lab;
     }
 }

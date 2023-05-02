@@ -19,5 +19,5 @@ public class Lab {
     private String name;
     private String description;
     private Status status;
-    private Long userId;
+    private String username;
 }

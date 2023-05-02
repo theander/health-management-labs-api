@@ -46,9 +46,18 @@ public class LabsController {
     }
 
     @GetMapping("/lab")
-    public ResponseEntity<List<Lab>> getLabs() {
-        List<Lab> labs = labService.getLabs();
+    public ResponseEntity<List<Lab>> getLabs(@RequestParam(value = "status" ) String status) {
+        List<Lab> labs = labService.getLabs(status);
         if (labs == null || labs.size() == 0) {
+            return new ResponseEntity<List<Lab>>(new ArrayList<Lab>(), HttpStatus.OK);
+        }
+        return new ResponseEntity<List<Lab>>(labs, HttpStatus.OK);
+    }
+
+    @GetMapping("/lab/{username}/get-open-exams")
+    public ResponseEntity<List<Lab>> getLabsByUsername(@PathVariable(value = "username" ) String username) {
+        List<Lab> labs = labService.findLabByUsername(username);
+        if (labs.size() == 0) {
             return new ResponseEntity<List<Lab>>(new ArrayList<Lab>(), HttpStatus.OK);
         }
         return new ResponseEntity<List<Lab>>(labs, HttpStatus.OK);

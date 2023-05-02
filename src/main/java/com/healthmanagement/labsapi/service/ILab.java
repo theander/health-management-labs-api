@@ -6,12 +6,9 @@ import java.util.List;
 
 public interface ILab {
     Lab createLab(Lab lab);
-
     Lab finishLab(Long id);
-
-    List<Lab> getLabsByUserId(Long userId);
     Lab getLabsById(Long userId);
-
-    List<Lab> getLabs();
+    List<Lab> getLabs(String status);
     Lab findById(Long id);
+    List<Lab> findLabByUsername(String username);
 }
