@@ -9,5 +9,5 @@ import java.util.List;
 @Repository
 public interface LabRepository extends JpaRepository<Lab, Long> {
     List<Lab> findAllByStatusEquals(Status status);
-    List<Lab> findByUsernameAndStatusEquals(String username,Status status);
+    List<Lab> findByUsernameEqualsAndStatusEquals(String username,Status status);
 }

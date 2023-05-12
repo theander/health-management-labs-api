@@ -53,7 +53,7 @@ public class LabService implements ILab {
 
     @Override
     public List<Lab> findLabByUsername(String username) {
-        List<Lab> lab = labRepository.findByUsernameAndStatusEquals(username,Status.CLOSE);
+        List<Lab> lab = labRepository.findByUsernameEqualsAndStatusEquals(username,Status.CLOSE);
         if (lab==null) {
             return null;
         }
