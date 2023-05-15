@@ -4,12 +4,14 @@ import com.healthmanagement.labsapi.model.Lab;
 import com.healthmanagement.labsapi.model.Status;
 import com.healthmanagement.labsapi.repository.LabRepository;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
 
+@Slf4j
 @Transactional
 @Service
 @RequiredArgsConstructor
@@ -31,15 +33,15 @@ public class LabService implements ILab {
     @Override
     public Lab getLabsById(Long Id) {
         Optional<Lab> labRepositoryById = labRepository.findById(Id);
-        if(labRepositoryById.isPresent()) {
+        if (labRepositoryById.isPresent()) {
             return labRepositoryById.get();
         }
         return null;
     }
 
     @Override
-    public List<Lab> getLabs(String status) {
-        return labRepository.findAllByStatusEquals(Status.valueOf(status));
+    public List<Lab> getLabs(String status, String username) {
+        return labRepository.findAllByStatusEqualsAndUsernameEquals(Status.valueOf(status), username);
     }
 
     @Override
@@ -53,8 +55,8 @@ public class LabService implements ILab {
 
     @Override
     public List<Lab> findLabByUsername(String username) {
-        List<Lab> lab = labRepository.findByUsernameEqualsAndStatusEquals(username,Status.CLOSE);
-        if (lab==null) {
+        List<Lab> lab = labRepository.findByUsernameEqualsAndStatusEquals(username, Status.CLOSE);
+        if (lab == null) {
             return null;
         }
         return lab;

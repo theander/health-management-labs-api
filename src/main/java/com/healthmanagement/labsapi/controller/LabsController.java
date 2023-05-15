@@ -1,17 +1,18 @@
 package com.healthmanagement.labsapi.controller;
 
 import com.healthmanagement.labsapi.model.Lab;
+import com.healthmanagement.labsapi.model.Status;
 import com.healthmanagement.labsapi.service.LabService;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.websocket.server.PathParam;
 import java.util.ArrayList;
 import java.util.List;
-
+@Slf4j
 @RestController
 @RequestMapping("/api")
 @RequiredArgsConstructor
@@ -46,8 +47,9 @@ public class LabsController {
     }
 
     @GetMapping("/lab")
-    public ResponseEntity<List<Lab>> getLabs(@RequestParam(value = "status" ) String status) {
-        List<Lab> labs = labService.getLabs(status);
+    public ResponseEntity<List<Lab>> getLabs(@RequestParam(value = "status" ) String status,
+                                             @RequestParam(value = "username" ) String username) {
+        List<Lab> labs = labService.getLabs(status,username);
         if (labs == null || labs.size() == 0) {
             return new ResponseEntity<List<Lab>>(new ArrayList<Lab>(), HttpStatus.OK);
         }
