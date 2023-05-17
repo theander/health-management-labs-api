@@ -8,7 +8,7 @@ public interface ILab {
     Lab createLab(Lab lab);
     Lab finishLab(Long id);
     Lab getLabsById(Long userId);
-    List<Lab> getLabs(String status,String username);
+    List<Lab> getLabs(String status,String username, String name);
     Lab findById(Long id);
     List<Lab> findLabByUsername(String username);
 }

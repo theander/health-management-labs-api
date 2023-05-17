@@ -40,8 +40,13 @@ public class LabService implements ILab {
     }
 
     @Override
-    public List<Lab> getLabs(String status, String username) {
-        return labRepository.findAllByStatusEqualsAndUsernameEquals(Status.valueOf(status), username);
+    public List<Lab> getLabs(String status, String username, String name) {
+
+        if (name.isEmpty()) {
+
+            return labRepository.findAllByStatusEqualsAndUsernameEquals(Status.valueOf(status), username);
+        }
+        return labRepository.findAllByStatusEqualsAndNameEquals(Status.valueOf(status), name);
     }
 
     @Override

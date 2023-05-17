@@ -47,9 +47,11 @@ public class LabsController {
     }
 
     @GetMapping("/lab")
-    public ResponseEntity<List<Lab>> getLabs(@RequestParam(value = "status" ) String status,
-                                             @RequestParam(value = "username" ) String username) {
-        List<Lab> labs = labService.getLabs(status,username);
+    public ResponseEntity<List<Lab>> getLabs(@RequestParam(value = "status" ,required = false) String status,
+                                             @RequestParam(value = "username",required = false ) String username,
+                                             @RequestParam(value = "name",required = false ) String name
+    ) {
+        List<Lab> labs = labService.getLabs(status,username,name);
         if (labs == null || labs.size() == 0) {
             return new ResponseEntity<List<Lab>>(new ArrayList<Lab>(), HttpStatus.OK);
         }
