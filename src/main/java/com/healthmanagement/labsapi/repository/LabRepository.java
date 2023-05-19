@@ -11,4 +11,5 @@ public interface LabRepository extends JpaRepository<Lab, Long> {
     List<Lab> findAllByStatusEqualsAndUsernameEquals(Status status,String username);
     List<Lab> findAllByStatusEqualsAndNameEquals(Status status,String name);
     List<Lab> findByUsernameEqualsAndStatusEquals(String username,Status status);
+    List<Lab> findByStatusEquals(Status status);
 }
