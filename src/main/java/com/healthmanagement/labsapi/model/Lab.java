@@ -1,6 +1,7 @@
 package com.healthmanagement.labsapi.model;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -8,6 +9,7 @@ import javax.persistence.*;
 
 
 @NoArgsConstructor
+@Builder
 @AllArgsConstructor
 @Data
 @Entity
