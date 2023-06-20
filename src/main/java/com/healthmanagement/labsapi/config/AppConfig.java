@@ -15,7 +15,7 @@ public class AppConfig {
                 registry.addMapping("/**")
                         .allowedOrigins("http://localhost:3000")
                         .allowedMethods("GET","PUT","POST","DELETE","OPTIONS")
-                        .allowedHeaders("authorization","contentType","Origin","Content-Type","X-Auth-Token")
+                        .allowedHeaders("authorization","contentType","Origin","Content-Type","X-Auth-Token","Accept")
                         .exposedHeaders("Authorization");
             }
         };

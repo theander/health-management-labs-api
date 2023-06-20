@@ -42,7 +42,7 @@ public class LabService implements ILab {
     @Override
     public List<Lab> getLabs(String status, String username, String name) {
 
-        if(username==null&&name==null){
+        if (username == null && name == null) {
             return labRepository.findByStatusEquals(Status.valueOf(status));
         }
 
