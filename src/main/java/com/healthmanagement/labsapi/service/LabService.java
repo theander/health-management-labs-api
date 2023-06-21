@@ -18,6 +18,7 @@ import java.util.Optional;
 public class LabService implements ILab {
     private final LabRepository labRepository;
 
+
     @Override
     public Lab createLab(Lab lab) {
         return labRepository.save(lab);
@@ -25,7 +26,7 @@ public class LabService implements ILab {
 
     @Override
     public Lab finishLab(Long id) {
-        Lab labById = this.findById(id);
+        Lab labById = labRepository.findById(id).get();
         labById.setStatus(Status.CLOSE);
         return labRepository.save(labById);
     }
