@@ -36,7 +36,7 @@ class LabServiceTest {
 
         when(labRepository.save(any())).thenReturn(lab2);
 
-        Lab lab = labService.finishLab(lab1.getId());
+        Lab lab = labService.createLab(lab1);
 
         assertThat(lab.getId()).isNotNull();
         verify(labRepository,times(1)).save(any());
