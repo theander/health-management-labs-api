@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.time.OffsetDateTime;
 
 
 @NoArgsConstructor
@@ -22,4 +23,5 @@ public class Lab {
     private String description;
     private Status status;
     private String username;
+    private OffsetDateTime registerDate;
 }

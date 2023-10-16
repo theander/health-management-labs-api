@@ -9,8 +9,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 @Slf4j
 @RestController
@@ -21,6 +23,7 @@ public class LabsController {
 
     @PostMapping("/lab")
     public ResponseEntity<Lab> createLab(@RequestBody Lab lab) {
+        lab.setRegisterDate(OffsetDateTime.now());
         Lab savedLab = labService.createLab(lab);
 
         return new ResponseEntity<Lab>(savedLab, HttpStatus.CREATED);
@@ -65,5 +68,12 @@ public class LabsController {
             return new ResponseEntity<List<Lab>>(new ArrayList<Lab>(), HttpStatus.OK);
         }
         return new ResponseEntity<List<Lab>>(labs, HttpStatus.OK);
+    }
+    @GetMapping("/lab/count")
+    public ResponseEntity<Map<Integer,Integer>> countLab() {
+
+        final var map= labService.countLabsByMonth();
+
+        return ResponseEntity.ok().body(map);
     }
 }

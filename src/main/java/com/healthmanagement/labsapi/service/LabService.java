@@ -8,8 +8,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import java.util.List;
-import java.util.Optional;
+import java.time.Month;
+import java.util.*;
+import java.util.stream.Stream;
 
 @Slf4j
 @Transactional
@@ -70,5 +71,16 @@ public class LabService implements ILab {
             return null;
         }
         return lab;
+    }
+
+    @Override
+    public Map<Integer, Integer> countLabsByMonth() {
+        Map<Integer,Integer> map = new HashMap<>();
+        Stream<Month> stream = Arrays.stream(Month.values());
+        stream.forEach(month -> {
+            int o = labRepository.countForMonth(month.getValue());
+            map.put(month.getValue(),o);
+        });
+        return map;
     }
 }

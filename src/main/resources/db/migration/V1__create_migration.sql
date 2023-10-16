@@ -5,5 +5,6 @@ create table labs.lab (
                      name varchar(255),
                      status int4,
                      username varchar(255),
+                     registerDate DATE,
                      primary key (id)
 );
