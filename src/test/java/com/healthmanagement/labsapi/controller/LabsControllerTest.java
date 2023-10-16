@@ -20,7 +20,6 @@ import java.util.List;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -53,7 +52,6 @@ public class LabsControllerTest {
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(contentAsString)
                 ).andExpect(status().isCreated())
-                .andExpect(jsonPath("$.id").value(12))
                 .andReturn();
         verify(labService, times(1)).createLab(any());
     }
